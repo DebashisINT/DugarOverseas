@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "674113699652",
+    "project_id": "durgaoverseas-51844",
+    "storage_bucket": "durgaoverseas-51844.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674113699652:android:2f154d0ae61f672c26e111",
+        "android_client_info": {
+          "package_name": "com.dugaroverseas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674113699652-3fcsk93jd5l3ld8de6ff3eaonb424gav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVrnHlFDpsHtxRJRG4bXHv1WbaPjyk-TQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674113699652-3fcsk93jd5l3ld8de6ff3eaonb424gav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674113699652:android:9a670c6a7876287f26e111",
+        "android_client_info": {
+          "package_name": "com.durgaoverseas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674113699652-3fcsk93jd5l3ld8de6ff3eaonb424gav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVrnHlFDpsHtxRJRG4bXHv1WbaPjyk-TQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674113699652-3fcsk93jd5l3ld8de6ff3eaonb424gav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
