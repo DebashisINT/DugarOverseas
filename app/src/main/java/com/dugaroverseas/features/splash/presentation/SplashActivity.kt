@@ -11,6 +11,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.*
@@ -36,6 +37,7 @@ import com.dugaroverseas.features.commondialog.presentation.CommonDialogClickLis
 import com.dugaroverseas.features.commondialogsinglebtn.CommonDialogSingleBtn
 import com.dugaroverseas.features.commondialogsinglebtn.OnDialogClickListener
 import com.dugaroverseas.features.dashboard.presentation.DashboardActivity
+import com.dugaroverseas.features.location.SingleShotLocationProvider
 import com.dugaroverseas.features.login.presentation.LoginActivity
 import com.dugaroverseas.features.splash.presentation.api.VersionCheckingRepoProvider
 import com.dugaroverseas.features.splash.presentation.model.VersionCheckingReponseModel
@@ -532,9 +534,39 @@ class SplashActivity : BaseActivity(), GpsStatusDetector.GpsStatusDetectorCallBa
         if (TextUtils.isEmpty(Pref.user_id) || Pref.user_id.isNullOrBlank()) {
             if (!isLoginLoaded) {
                 isLoginLoaded = true
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-                finish()
+
+                progress_wheel.spin()
+                try{
+                    SingleShotLocationProvider.requestSingleUpdate(this,
+                        object : SingleShotLocationProvider.LocationCallback {
+                            override fun onStatusChanged(status: String) {
+                            }
+
+                            override fun onProviderEnabled(status: String) {
+                            }
+
+                            override fun onProviderDisabled(status: String) {
+                            }
+
+                            override fun onNewLocationAvailable(location: Location) {
+                                Pref.latitude = location.latitude.toString()
+                                Pref.longitude = location.longitude.toString()
+
+                                progress_wheel.stopSpinning()
+
+                                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                                finish()
+                            }
+                        })
+                }
+                catch (ex:Exception){
+                    ex.printStackTrace()
+                    progress_wheel.stopSpinning()
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                    finish()
+                }
             }
 
         } else {
