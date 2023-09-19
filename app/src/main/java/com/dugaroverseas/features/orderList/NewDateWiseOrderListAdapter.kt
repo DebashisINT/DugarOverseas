@@ -89,9 +89,6 @@ class NewDateWiseOrderListAdapter(context: Context, userLocationDataEntity: Arra
                             listener.onSyncClick(adapterPosition)
                         })
                     }
-                }else{
-                    //assignedto_dd map in shop begin
-                    //itemView.sync_icon.setImageResource(R.drawable.ic_registered_shop_sync)
                 }
 
                 var totalAmount = 0.0
@@ -100,7 +97,9 @@ class NewDateWiseOrderListAdapter(context: Context, userLocationDataEntity: Arra
                     totalAmount += list[i].total_price?.toDouble()!!
                 }
                 //val totalPrice = DecimalFormat("##.##").format(totalAmount)
-                val totalPrice = String.format("%.2f", totalAmount.toFloat())
+                //val totalPrice = String.format("%.2f", totalAmount.toFloat())
+                //mantis id 26274
+                val totalPrice = String.format("%.2f", totalAmount.toDouble())
                 itemView.tv_total_amount.text = context.getString(R.string.rupee_symbol) + totalPrice
 
                 if (Pref.isOrderMailVisible) {

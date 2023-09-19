@@ -101,23 +101,12 @@ class ViewCartFragment : BaseFragment() {
         tv_total_order_value = view.findViewById(R.id.tv_total_order_value)
         tv_shop_name = view.findViewById(R.id.tv_shop_name)
 
-        //assignedto_dd map in shop begin
+
         var shop = AddShopDBModelEntity()
         try {
              shop = AppDatabase.getDBInstance()!!.addShopEntryDao().getShopDetail(orderDetails?.shop_id)
         }catch (ex:Exception){
-                /*var objDD = orderDetails?.shop_id?.let {
-                    AppDatabase.getDBInstance()?.ddListDao()?.getSingleValue(
-                        it
-                    )
-                }
-            shop.shop_id = objDD!!.dd_id
-            shop.shopName = objDD.dd_name
-            shop.shopLat = objDD.dd_latitude!!.toDouble()
-            shop.shopLong = objDD.dd_longitude!!.toDouble()
-            shop.address = LocationWizard.getLocationName(mContext, objDD.dd_latitude!!.toDouble(),   objDD.dd_longitude!!.toDouble())
-            shop.isUploaded = true
-            shop.type = "4"*/
+            ex.printStackTrace()
         }
         tv_shop_name.text = shop.shopName
 
@@ -201,7 +190,9 @@ class ViewCartFragment : BaseFragment() {
                 totalAmount += list[i].total_price?.toDouble()!!
             }
             //val totalPrice = DecimalFormat("##.##").format(totalAmount)
-            val totalPrice = String.format("%.2f", totalAmount.toFloat())
+            //val totalPrice = String.format("%.2f", totalAmount.toFloat())
+            //mantis id 26274
+            val totalPrice = String.format("%.2f", totalAmount.toDouble())
             tv_total_order_amount.text = totalPrice
         }, 200)
 
@@ -215,7 +206,9 @@ class ViewCartFragment : BaseFragment() {
                 ex.printStackTrace()
                 totalScAmount = 0.0
             }
-            val totalScPrice = String.format("%.2f", totalScAmount.toFloat())
+            //val totalScPrice = String.format("%.2f", totalScAmount.toFloat())
+            //mantis id 26274
+            val totalScPrice = String.format("%.2f", totalScAmount.toDouble())
             tv_total_order_amount_sc.text = totalScPrice
         }, 200)
 

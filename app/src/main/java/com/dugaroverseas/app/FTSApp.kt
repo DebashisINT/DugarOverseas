@@ -46,12 +46,16 @@ class FTSApp : MultiDexApplication() {
         //initXlog()
         //initTimber()
 
-        AppDatabase.initAppDatabase(this)
-        Stetho.initializeWithDefaults(this)
-        val builder = StrictMode.VmPolicy.Builder()
-        StrictMode.setVmPolicy(builder.build())
-        PreferenceHolder.setContext(applicationContext)
-        Fabric.with(this, Crashlytics())
+        try{
+            AppDatabase.initAppDatabase(this)
+            Stetho.initializeWithDefaults(this)
+            val builder = StrictMode.VmPolicy.Builder()
+            StrictMode.setVmPolicy(builder.build())
+            PreferenceHolder.setContext(applicationContext)
+            Fabric.with(this, Crashlytics())
+        }catch (ex:Exception){
+            ex.printStackTrace()
+        }
 
     }
 

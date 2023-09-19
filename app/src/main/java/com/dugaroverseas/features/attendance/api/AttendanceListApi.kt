@@ -1,9 +1,7 @@
 package com.dugaroverseas.features.attendance.api
 
 import com.dugaroverseas.app.NetworkConstant
-import com.dugaroverseas.features.attendance.model.AttendanceRequest
-import com.dugaroverseas.features.attendance.model.AttendanceResponse
-import com.dugaroverseas.features.attendance.model.DayStartEndListResponse
+import com.dugaroverseas.features.attendance.model.*
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,6 +18,9 @@ interface AttendanceListApi {
 
     @POST("UserWiseDayStartEnd/UserDayStartEndList")
     fun getDayStartEndListAPI(@Body attendanceReq: AttendanceRequest?): Observable<DayStartEndListResponse>
+
+    @POST("Shoplist/PartyNotVisitedList")
+    fun getPartyListNotVisited(@Body reqBody: InputRequest?): Observable<OutputResponse>
 
     /**
      * Companion object to create the AttendanceListApi
